@@ -25,6 +25,8 @@ services:
     restart: always
     networks:
       - frontend
+    ports:
+      - 27017:27017
     volumes:
       - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
       - /mnt/iscsi_frontend/mongodb/configdb:/data/configdb:rw
