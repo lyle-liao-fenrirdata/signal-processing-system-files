@@ -27,6 +27,7 @@ services:
       - frontend
     volumes:
       - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
+      - /mnt/iscsi_frontend/mongodb/configdb:/data/configdb:rw
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
