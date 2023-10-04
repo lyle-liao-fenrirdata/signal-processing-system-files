@@ -8,10 +8,10 @@ services:
     image: signal-process-system-frontend-files
     container_name: nextjs-files
     restart: always
+    networks:
+      - frontend
     env_file:
       - ../.env.production
-    ports:
-      - 3010:3000
     volumes:
       - /mnt/iscsi_frontend/mongodb/files:/app/public/mount:rw
     depends_on:
@@ -21,10 +21,13 @@ services:
     image: mongo
     restart: always
     container_name: mongo
-    ports:
-      - "27017:27017"
+    networks:
+      - frontend
     volumes:
       - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+
+networks:
+  frontend:
