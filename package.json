@@ -1,8 +1,8 @@
 {
-  "name": "signal-processing-system",
+  "name": "signal-processing-system-files",
   "version": "1.0.0",
   "description": "",
-  "repository": "https://github.com/lyle-liao-fenrirdata/signal-processing-system.git",
+  "repository": "https://github.com/lyle-liao-fenrirdata/signal-processing-system-files.git",
   "license": "MIT",
   "type": "module",
   "dependencies": {
