@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 import { env } from "@/env.mjs";
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
 type GetParams = {
     params: {
@@ -9,10 +9,14 @@ type GetParams = {
 };
 
 // export an async GET function. This is a convention in NextJS
-export async function GET({ params }: GetParams) {
-    // filename for the file that the user is trying to download
+export async function GET(request: NextRequest, { params }: GetParams) {
+    const dir = request.nextUrl.searchParams.get('dir')
+    if (!dir) {
+        return NextResponse.json({ ok: false, message: "dir is required" })
+    }
+    const path = decodeURIComponent(dir).replace('home/', env.MOUNT_DIR);
     const filename = params.filename;
-    const filePath = env.MOUNT_DIR + filename;
+    const filePath = path + filename;
 
     try {
         await fs.access(filePath, fs.constants.R_OK)
