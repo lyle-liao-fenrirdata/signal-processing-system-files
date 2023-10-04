@@ -21,8 +21,8 @@ services:
     image: mongo
     restart: always
     container_name: mongo
-    # ports:
-    #   - "27017:27017"
+    ports:
+      - "27017:27017"
     volumes:
       - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
     environment:

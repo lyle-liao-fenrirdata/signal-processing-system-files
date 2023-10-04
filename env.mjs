@@ -13,7 +13,7 @@ export const env = createEnv({
       .regex(
         /^mongodb:\/\/[\w]{1,}:[\w]{1,}@[A-Za-z0-9\-\.\~\(\)\'\!\*\:\@\,\_\;\+\&\=\?\/\#\+\&\=]{1,}$/gm
       )
-      .default("mongodb://root:root@localhost:27017/admin"),
+      .default("mongodb://root:root@mongo:27017/admin"),
     MOUNT_DIR: z.string().default("./public/mount/"),
   },
 
