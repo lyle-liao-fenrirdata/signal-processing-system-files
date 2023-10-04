@@ -20,9 +20,12 @@ services:
       - mongo
 
   mongo:
+    build:
+      context: ../
+      dockerfile: nextjs-docker/mongo/Dockerfile
     image: mongo
-    restart: always
     container_name: mongo
+    restart: always
     networks:
       - frontend
     volumes:
