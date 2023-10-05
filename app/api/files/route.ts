@@ -30,6 +30,7 @@ export async function GET(request: NextRequest) {
             path: dir,
         }
     })
+    console.log({ dir, dirFiles: dirFiles.map((d) => d.name), dirMongo })
 
     const files = (await Promise.all(dirFiles.filter((dirent) => dirent.isFile()).map(async (dirent) => {
         const { birthtimeMs, size } = await fs.stat(`${dir}${dirent.name}`)
@@ -67,8 +68,8 @@ export async function POST(request: Request) {
     const filePath = `${path}${file.name}`
 
     // check if file already exist
-    console.log("\x1b[43m", path, "\x1b[0m");
-    console.log("\x1b[43m", filePath, "\x1b[0m");
+    // console.log("\x1b[43m", path, "\x1b[0m");
+    // console.log("\x1b[43m", filePath, "\x1b[0m");
     try {
         await fs.access(filePath, fs.constants.F_OK)
         return NextResponse.json({ ok: false })
