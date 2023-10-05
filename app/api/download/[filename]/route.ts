@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: GetParams) {
         return NextResponse.json({ ok: false, message: "dir is required" })
     }
     const path = decodeURIComponent(dir).replace('home/', env.MOUNT_DIR);
-    const filename = params.filename;
+    const filename = decodeURIComponent(params.filename);
     const filePath = path + filename;
 
     try {
