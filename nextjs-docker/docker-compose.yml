@@ -32,5 +32,22 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
 
+      # docker run -e ME_CONFIG_MONGODB_SERVER=some-mongo -p 8081:8081 mongo-express
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    networks:
+      - frontend
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: user
+      ME_CONFIG_BASICAUTH_PASSWORD: 1qaz2wsx
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on:
+      - mongo
+
 networks:
   frontend:
