@@ -35,8 +35,8 @@ export async function GET(request: NextRequest) {
     const files = (await Promise.all(dirFiles.filter((dirent) => dirent.isFile()).map(async (dirent) => {
         const { birthtimeMs, size } = await fs.stat(`${dir}${dirent.name}`)
         const mongo = dirMongo.find((dm) => dm.filename === dirent.name)
-        return { birthtimeMs, size, comment: mongo?.comment, id: mongo?.id, name: dirent.name }
-    }))).filter((f) => f.id);
+        return { birthtimeMs, size, comment: mongo?.comment || '', id: mongo?.id || '', name: dirent.name }
+    })));
 
     const dirs = await Promise.all(dirFiles.filter((dirent) => dirent.isDirectory()).map(async (dirent) => {
         const dirDirent = await fs.readdir(`${dir}${dirent.name}`, {

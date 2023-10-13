@@ -25,14 +25,13 @@ services:
       - frontend
     ports:
       - 27017:27017
-    volumes:
-      - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
-      - /mnt/iscsi_frontend/mongodb/configdb:/data/configdb:rw
+    # volumes:
+    #   - /mnt/iscsi_frontend/mongodb/db:/data/db:rw
+    #   - /mnt/iscsi_frontend/mongodb/configdb:/data/configdb:rw
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
-
-      # docker run -e ME_CONFIG_MONGODB_SERVER=some-mongo -p 8081:8081 mongo-express
+      INIT_WAIT_SEC: 3
 
   mongo-express:
     image: mongo-express
@@ -41,11 +40,16 @@ services:
     networks:
       - frontend
     environment:
+      ME_CONFIG_MONGODB_SERVER: "mongo"
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
+      ME_CONFIG_MONGODB_AUTH_DATABASE: "admin?authSource=admin&directConnection=true"
+      ME_CONFIG_MONGODB_AUTH_USERNAME: "root"
+      ME_CONFIG_MONGODB_AUTH_PASSWOR: "root"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "root"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "root"
       ME_CONFIG_BASICAUTH_USERNAME: user
       ME_CONFIG_BASICAUTH_PASSWORD: 1qaz2wsx
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
-      ME_CONFIG_MONGODB_SERVER: mongo
     depends_on:
       - mongo
 
