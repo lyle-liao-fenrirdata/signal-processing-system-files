@@ -14,7 +14,7 @@ services:
     env_file:
       - ../.env.production
     volumes:
-      - /mnt/iscsi_frontend/mongodb/files:/app/public/mount:rw
+      - /mnt/iscsi_frontend/mount/files:/app/public/mount:rw
 
 networks:
   frontend:
