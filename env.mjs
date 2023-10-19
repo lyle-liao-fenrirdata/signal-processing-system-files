@@ -12,9 +12,6 @@ export const env = createEnv({
       .string()
       .regex(
         /^mongodb:\/\/[\w]{1,}:[\w]{1,}@[A-Za-z0-9\-\.\~\(\)\'\!\*\:\@\,\_\;\+\&\=\?\/\#\+\&\=]{1,}$/gm
-      )
-      .default(
-        "mongodb://nextjs:nextjs@mongo-rs1:27041/nextjs?replicaSet=RS&authSource=nextjs&retryWrites=true&w=majority&directConnection=true"
       ),
     MOUNT_DIR: z.string().default("./public/mount/"),
   },
