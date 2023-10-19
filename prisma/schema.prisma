@@ -1,14 +1,6 @@
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// https://stackoverflow.com/questions/73570090/prisma-mongodb-replica-set
-
 generator client {
   provider = "prisma-client-js"
 }
-
-// generator client {
-//   provider = "mongodb"
-// }
 
 datasource db {
   provider = "mongodb"
