@@ -18,5 +18,5 @@ services:
 
 networks:
   frontend:
-    exteral:
+    external:
       name: mongo-replica-set_mongodb
